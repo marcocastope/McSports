@@ -47,4 +47,6 @@ dependencies {
     implementation("androidx.compose.material:material:1.4.0")
     implementation("androidx.activity:activity-compose:1.7.0")
     implementation("io.insert-koin:koin-androidx-compose:3.4.4")
+    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
+    implementation("io.coil-kt:coil-compose:2.3.0")
 }
