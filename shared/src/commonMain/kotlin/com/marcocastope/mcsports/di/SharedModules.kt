@@ -5,6 +5,7 @@ import com.marcocastope.mcsports.data.SportsDataSource
 import com.marcocastope.mcsports.data.repository.SportsRepositoryImpl
 import com.marcocastope.mcsports.domain.repository.SportsRepository
 import com.marcocastope.mcsports.domain.usecases.GetLeaguesUseCase
+import com.marcocastope.mcsports.domain.usecases.GetLivesScoreUseCase
 import com.marcocastope.mcsports.util.provideDispatcher
 import org.koin.dsl.module
 
@@ -20,6 +21,7 @@ private val ioModule = module {
 private val domainModule = module {
     single<SportsRepository> { SportsRepositoryImpl(get()) }
     factory { GetLeaguesUseCase() }
+    factory { GetLivesScoreUseCase() }
 }
 
 fun getSharedModules() = listOf(dataModule, ioModule, domainModule)
