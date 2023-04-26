@@ -6,11 +6,11 @@ import kotlinx.serialization.Serializable
 @Serializable
 internal data class LeagueRemote(
     @SerialName("league_key")
-    val leagueKey: Int,
+    val leagueKey: String,
     @SerialName("league_name")
     val leagueName: String,
     @SerialName("country_key")
-    val countryKey: Int,
+    val countryKey: String,
     @SerialName("country_name")
     val countryName: String,
     @SerialName("league_logo")

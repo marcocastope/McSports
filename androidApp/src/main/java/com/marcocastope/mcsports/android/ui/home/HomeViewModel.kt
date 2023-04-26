@@ -5,24 +5,24 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.marcocastope.mcsports.domain.usecases.GetLeaguesUseCase
 import com.marcocastope.mcsports.domain.usecases.GetLivesScoreUseCase
+import com.marcocastope.mcsports.domain.usecases.GetMatchesUseCase
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
-    private val getLeaguesUseCase: GetLeaguesUseCase,
-    private val getLivesScoreUseCase: GetLivesScoreUseCase
+    private val getLivesScoreUseCase: GetLivesScoreUseCase,
+    private val getMatchesUseCase: GetMatchesUseCase
 ) : ViewModel() {
 
     var homeUiState by mutableStateOf(HomeUiState())
 
     init {
         viewModelScope.launch {
-            val leagues = getLeaguesUseCase()
             val livesScore = getLivesScoreUseCase()
+            val matches = getMatchesUseCase()
             homeUiState = homeUiState.copy(
-                leagues = leagues,
                 livesScore = livesScore,
+                matches = matches,
                 loading = livesScore.isEmpty()
             )
         }
