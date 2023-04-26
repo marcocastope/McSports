@@ -4,9 +4,9 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal data class LiveScoreRemote(
+internal data class MatchRemote(
     @SerialName("event_key")
-    val eventKey: Int,
+    val eventKey: String,
     @SerialName("event_date")
     val eventDate: String?,
     @SerialName("event_time")
@@ -19,12 +19,6 @@ internal data class LiveScoreRemote(
     val homeTeamLogo: String?,
     @SerialName("away_team_logo")
     val awayTeamLogo: String?,
-    @SerialName("league_logo")
-    val leagueLogo: String?,
-    @SerialName("league_name")
-    val leagueName: String?,
-    @SerialName("league_round")
-    val leagueRound: String?,
     @SerialName("event_final_result")
     val eventFinalResult: String?,
     @SerialName("event_live")

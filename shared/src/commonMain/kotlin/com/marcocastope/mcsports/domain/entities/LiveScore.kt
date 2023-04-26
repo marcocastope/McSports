@@ -11,5 +11,6 @@ data class LiveScore(
     val leagueLogo: String?,
     val leagueName: String?,
     val leagueRound: String?,
-    val finalResult: String?
+    val finalResult: String?,
+    val eventLive: String
 )
