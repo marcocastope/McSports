@@ -18,7 +18,9 @@ object DataMock {
         "UEFA Europa League",
         "Quarter-finals",
         "2 - 2",
-        "1"
+        "1",
+        "Nacional",
+        statistics = listOf()
     )
 
     val league = League(

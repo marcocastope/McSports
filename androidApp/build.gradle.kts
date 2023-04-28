@@ -39,6 +39,7 @@ android {
 }
 
 dependencies {
+    val navVersion = "2.5.3"
     implementation(project(":shared"))
     implementation("androidx.compose.ui:ui:1.4.0")
     implementation("androidx.compose.ui:ui-tooling:1.4.0")
@@ -49,4 +50,6 @@ dependencies {
     implementation("io.insert-koin:koin-androidx-compose:3.4.4")
     implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
     implementation("io.coil-kt:coil-compose:2.3.0")
+
+    implementation("androidx.navigation:navigation-compose:$navVersion")
 }

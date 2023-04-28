@@ -8,4 +8,5 @@ internal interface SportsRepository {
     suspend fun getLeagues(): List<League>
     suspend fun getLivesScore(): List<LiveScore>
     suspend fun getMatches(): List<Match>
+    suspend fun getLiveScoreDetails(matchId: String): List<LiveScore>
 }
