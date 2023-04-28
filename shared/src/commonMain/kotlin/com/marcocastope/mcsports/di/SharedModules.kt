@@ -5,6 +5,7 @@ import com.marcocastope.mcsports.data.SportsDataSource
 import com.marcocastope.mcsports.data.repository.SportsRepositoryImpl
 import com.marcocastope.mcsports.domain.repository.SportsRepository
 import com.marcocastope.mcsports.domain.usecases.GetLeaguesUseCase
+import com.marcocastope.mcsports.domain.usecases.GetLiveScoreDetailsUseCase
 import com.marcocastope.mcsports.domain.usecases.GetLivesScoreUseCase
 import com.marcocastope.mcsports.domain.usecases.GetMatchesUseCase
 import com.marcocastope.mcsports.util.provideDispatcher
@@ -24,6 +25,7 @@ private val domainModule = module {
     factory { GetLeaguesUseCase() }
     factory { GetLivesScoreUseCase() }
     factory { GetMatchesUseCase() }
+    factory { GetLiveScoreDetailsUseCase() }
 }
 
 fun getSharedModules() = listOf(dataModule, ioModule, domainModule)

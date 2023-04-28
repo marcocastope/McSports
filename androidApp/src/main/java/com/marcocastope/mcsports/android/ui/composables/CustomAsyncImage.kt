@@ -13,6 +13,7 @@ import com.marcocastope.mcsports.android.R
 
 @Composable
 fun CustomAsyncImage(imageUrl: String?, modifier: Modifier = Modifier) {
+    println("$imageUrl")
     AsyncImage(
         model = ImageRequest.Builder(LocalContext.current)
             .data(imageUrl ?: R.drawable.ic_shield_24)

@@ -23,4 +23,8 @@ internal class SportsRepositoryImpl(
     override suspend fun getMatches(): List<Match> {
         return dataSource.getMatches().result.map { it.toMatch() }
     }
+
+    override suspend fun getLiveScoreDetails(matchId: String): List<LiveScore> {
+        return dataSource.getLiveScoreDetails(matchId).result.map { it.toLiveScore() }
+    }
 }

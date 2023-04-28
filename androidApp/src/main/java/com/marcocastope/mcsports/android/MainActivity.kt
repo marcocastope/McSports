@@ -8,6 +8,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import com.marcocastope.mcsports.android.ui.home.HomeViewModel
+import com.marcocastope.mcsports.android.ui.livescore.LiveScoreViewModel
 import org.koin.androidx.compose.koinViewModel
 
 class MainActivity : ComponentActivity() {

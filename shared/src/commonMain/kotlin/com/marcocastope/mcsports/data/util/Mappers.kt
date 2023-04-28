@@ -3,9 +3,11 @@ package com.marcocastope.mcsports.data.util
 import com.marcocastope.mcsports.data.LeagueRemote
 import com.marcocastope.mcsports.data.LiveScoreRemote
 import com.marcocastope.mcsports.data.MatchRemote
+import com.marcocastope.mcsports.data.StatisticRemote
 import com.marcocastope.mcsports.domain.entities.League
 import com.marcocastope.mcsports.domain.entities.LiveScore
 import com.marcocastope.mcsports.domain.entities.Match
+import com.marcocastope.mcsports.domain.entities.Statistic
 
 internal fun LeagueRemote.toLeague(): League {
     return League(
@@ -31,7 +33,9 @@ internal fun LiveScoreRemote.toLiveScore(): LiveScore {
         leagueName = leagueName,
         leagueRound = leagueRound,
         finalResult = eventFinalResult,
-        eventLive = eventLive
+        eventLive = eventLive,
+        eventStadium = eventStadium,
+        statistics = statistics.map { it.toStatistic() }
     )
 }
 
@@ -45,5 +49,13 @@ internal fun MatchRemote.toMatch(): Match {
         homeTeamLogo = homeTeamLogo,
         awayTeamLogo = awayTeamLogo,
         finalResult = eventFinalResult,
+    )
+}
+
+internal fun StatisticRemote.toStatistic(): Statistic {
+    return Statistic(
+        type = type,
+        home = home,
+        away = away
     )
 }
