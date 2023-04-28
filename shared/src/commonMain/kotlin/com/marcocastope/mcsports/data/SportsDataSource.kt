@@ -19,4 +19,8 @@ internal class SportsDataSource(
     suspend fun getMatches() = withContext(dispatcher.io) {
         apiService.getMatches()
     }
+
+    suspend fun getLiveScoreDetails(matchId: String) = withContext(dispatcher.io) {
+        apiService.getLiveScoreDetails(matchId)
+    }
 }

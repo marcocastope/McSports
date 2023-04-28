@@ -28,5 +28,9 @@ internal data class LiveScoreRemote(
     @SerialName("event_final_result")
     val eventFinalResult: String?,
     @SerialName("event_live")
-    val eventLive: String
+    val eventLive: String,
+    @SerialName("event_stadium")
+    val eventStadium: String,
+    @SerialName("statistics")
+    val statistics: List<StatisticRemote>
 )

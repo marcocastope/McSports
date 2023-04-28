@@ -7,6 +7,7 @@ import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -50,8 +51,15 @@ import com.marcocastope.mcsports.android.ui.composables.MatchItem
 import com.marcocastope.mcsports.domain.entities.LiveScore
 import com.marcocastope.mcsports.domain.entities.Match
 
+typealias OnLiveScoreSelected = (LiveScore) -> Unit
+typealias OnMatchSelected = (Match) -> Unit
+
 @Composable
-fun HomeScreen(paddingValues: PaddingValues, state: HomeUiState) {
+fun HomeScreen(
+    paddingValues: PaddingValues,
+    state: HomeUiState,
+    onLiveScoreSelected: OnLiveScoreSelected
+) {
     LazyColumn(
         modifier = Modifier
             .padding(paddingValues = paddingValues)
@@ -69,7 +77,10 @@ fun HomeScreen(paddingValues: PaddingValues, state: HomeUiState) {
                         CircularProgressIndicator(color = Color.Green, strokeWidth = 5.dp)
                     }
                 else
-                    LiveMatchesSection(livesScore = state.livesScore) {}
+                    LiveMatchesSection(
+                        livesScore = state.livesScore,
+                        onLiveScoreSelected = onLiveScoreSelected
+                    )
             }
         }
 
@@ -94,18 +105,18 @@ fun HomeSection(title: String, content: @Composable () -> Unit) {
 }
 
 @Composable
-fun LiveMatchesSection(livesScore: List<LiveScore>, livesScoreSelection: (LiveScore) -> Unit) {
+fun LiveMatchesSection(livesScore: List<LiveScore>, onLiveScoreSelected: OnLiveScoreSelected) {
     LazyRow(horizontalArrangement = Arrangement.spacedBy(16.dp),
         contentPadding = PaddingValues(16.dp),
         content = {
             items(livesScore) {
-                LiveMatchItem(liveScore = it, liveScoreSelection = livesScoreSelection)
+                LiveMatchItem(liveScore = it, onLiveScoreSelected = onLiveScoreSelected)
             }
         })
 }
 
 @Composable
-fun MatchesSection(matches: List<Match>, matchSelection: (Match) -> Unit) {
+fun MatchesSection(matches: List<Match>, matchSelection: OnMatchSelected) {
     LazyRow(
         contentPadding = PaddingValues(16.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp),
@@ -117,9 +128,11 @@ fun MatchesSection(matches: List<Match>, matchSelection: (Match) -> Unit) {
 }
 
 @Composable
-fun LiveMatchItem(liveScore: LiveScore, liveScoreSelection: (LiveScore) -> Unit) {
+fun LiveMatchItem(liveScore: LiveScore, onLiveScoreSelected: OnLiveScoreSelected) {
     Card(
-        modifier = Modifier.size(290.dp, 190.dp),
+        modifier = Modifier
+            .size(290.dp, 190.dp)
+            .clickable { onLiveScoreSelected(liveScore) },
         elevation = 2.dp,
         shape = RoundedCornerShape(10.dp)
     ) {
@@ -241,7 +254,9 @@ fun TeamItem(teamName: String, imageUrl: String?, modifier: Modifier = Modifier)
             fontSize = 14.sp,
             overflow = TextOverflow.Ellipsis,
             maxLines = 1,
-            modifier = Modifier.width(100.dp)
+            modifier = Modifier
+                .padding(top = 10.dp)
+                .width(100.dp)
         )
 
         Text(
@@ -253,7 +268,7 @@ fun TeamItem(teamName: String, imageUrl: String?, modifier: Modifier = Modifier)
     }
 }
 
-private fun LazyListScope.matches(matches: List<Match>, matchSelection: (Match) -> Unit) {
+private fun LazyListScope.matches(matches: List<Match>, matchSelection: OnMatchSelected) {
     items(matches) {
         MatchItem(match = it, leagueSelected = matchSelection)
     }
@@ -263,5 +278,5 @@ private fun LazyListScope.matches(matches: List<Match>, matchSelection: (Match) 
 @Composable
 fun HomeSectionPreview() {
     LiveMatchItem(
-        liveScore = DataMock.liveScore, liveScoreSelection = {})
+        liveScore = DataMock.liveScore, onLiveScoreSelected = {})
 }
