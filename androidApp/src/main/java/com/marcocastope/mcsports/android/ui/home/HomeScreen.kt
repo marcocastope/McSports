@@ -47,6 +47,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import com.marcocastope.mcsports.android.R
 import com.marcocastope.mcsports.android.data.DataMock
 import com.marcocastope.mcsports.android.ui.composables.CustomAsyncImage
+import com.marcocastope.mcsports.android.ui.composables.CustomProgressIndicator
 import com.marcocastope.mcsports.android.ui.composables.MatchItem
 import com.marcocastope.mcsports.domain.entities.LiveScore
 import com.marcocastope.mcsports.domain.entities.Match
@@ -74,7 +75,7 @@ fun HomeScreen(
                             .fillMaxWidth(),
                         contentAlignment = Alignment.Center
                     ) {
-                        CircularProgressIndicator(color = Color.Green, strokeWidth = 5.dp)
+                        CustomProgressIndicator()
                     }
                 else
                     LiveMatchesSection(
@@ -140,7 +141,7 @@ fun LiveMatchItem(liveScore: LiveScore, onLiveScoreSelected: OnLiveScoreSelected
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color(0xff03ff89))
+                    .background(Color(0xff226cfe))
                     .padding(10.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
@@ -148,7 +149,7 @@ fun LiveMatchItem(liveScore: LiveScore, onLiveScoreSelected: OnLiveScoreSelected
                 Text(
                     text = liveScore.leagueName ?: "",
                     fontWeight = FontWeight.W400,
-                    color = Color.Black,
+                    color = Color.White,
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1,
                     modifier = Modifier.width(200.dp)

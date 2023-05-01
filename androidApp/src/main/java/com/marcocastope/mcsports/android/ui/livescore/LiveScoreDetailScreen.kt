@@ -12,7 +12,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Card
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
@@ -28,6 +27,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.marcocastope.mcsports.android.ui.composables.CustomProgressIndicator
 import com.marcocastope.mcsports.android.ui.composables.MatchDetailCard
 import com.marcocastope.mcsports.domain.entities.LiveScore
 import org.koin.androidx.compose.koinViewModel
@@ -60,10 +60,7 @@ fun LiveScoreDetailScreen(
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 24.dp)
             )
         } ?: run {
-            CircularProgressIndicator(
-                color = Color.Green,
-                strokeWidth = 5.dp
-            )
+            CustomProgressIndicator()
         }
     }
 }
@@ -146,6 +143,6 @@ fun StatisticContent(liveScore: LiveScore, modifier: Modifier = Modifier) {
 @Composable
 fun TopDetailsPreview() {
     TopDetails(leagueName = "Ligue 1") {
-        
+
     }
 }
