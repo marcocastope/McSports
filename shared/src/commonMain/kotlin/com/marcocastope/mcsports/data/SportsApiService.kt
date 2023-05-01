@@ -23,8 +23,8 @@ internal class SportsApiService : KtorApi() {
     suspend fun getMatches(): MatchesResponse = client.get {
         pathUrl("football", "Fixtures")
         parameter("timezone", "America/New_York")
-        parameter("from", "2023-04-25")
-        parameter("to", "2023-04-30")
+        parameter("from", "2023-05-1")
+        parameter("to", "2023-05-7")
     }.body()
 
     suspend fun getLiveScoreDetails(matchId: String): LivesScoreResponse = client.get {

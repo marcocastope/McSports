@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.marcocastope.mcsports.android.ui.home.HomeScreen
 import com.marcocastope.mcsports.android.ui.home.HomeUiState
+import com.marcocastope.mcsports.android.ui.leagues.LeaguesScreen
 import com.marcocastope.mcsports.android.ui.livescore.DetailUiState
 import com.marcocastope.mcsports.android.ui.livescore.LiveScoreDetailScreen
 
@@ -15,10 +16,10 @@ import com.marcocastope.mcsports.android.ui.livescore.LiveScoreDetailScreen
 fun CustomNavHost(
     paddingValues: PaddingValues,
     homeState: HomeUiState,
-    navController: NavHostController = rememberNavController()
+    navController: NavHostController
 ) {
-    NavHost(navController = navController, startDestination = "home") {
-        composable("home") {
+    NavHost(navController = navController, startDestination = BottomNavItem.Home.screenRoute) {
+        composable(BottomNavItem.Home.screenRoute) {
             HomeScreen(
                 paddingValues = paddingValues,
                 state = homeState,
@@ -27,6 +28,9 @@ fun CustomNavHost(
         composable("liveScoreDetail/{matchId}") {
             val matchId = it.arguments?.getString("matchId")
             LiveScoreDetailScreen(matchId = matchId, onBackPressed = {navController.popBackStack()})
+        }
+        composable(BottomNavItem.Leagues.screenRoute) {
+            LeaguesScreen()
         }
     }
 }
